@@ -123,10 +123,11 @@ class LinkedList:
             return last
         
     def remove(self, index):
-        if index <1:
-            temp = self.pop_first()
-            return temp
-        elif index> self.length: 
+        if index ==0:
+            return self.pop_first()
+        if index == self.length-1:
+            return self.pop()
+        elif index> self.length or index <0: 
             return "Index out of range"
         else: 
             preceding = self.get(index-1)
@@ -135,14 +136,92 @@ class LinkedList:
             target.next = None
             self.length -=1
             return target
+    
+    def delete_all(self):
+        self.head = None
+        self.tail = None
+        self.length = 0
+
+    def reverse(self):
+        prev_node = None
+        current_node = self.head
+        while current_node is not None:
+            next_node = current_node.next
+            current_node.next = prev_node
+            prev_node = current_node
+            current_node = next_node
+        self.head, self.tail = self.tail, self.head
+        return self
+        
+    def find_middle(self):
+        temp_node = self.head
+        index = self.length//2 
+        print (index)
+        for _ in range(index):
+            temp_node = temp_node.next
+        return temp_node
+    
+    def find_middle_1(self):  # "fast and slow pointer" technique or "tortoise and hare" algorithm
+        slow = self.head
+        fast = self.head
+        while fast is not None and fast.next is not None:
+            slow = slow.next
+            fast = fast.next.next
+        return slow
+    
+
+    def remove_duplicates(self):
+        if self.head is None:
+            return self  # If the list is empty, no duplicates to remove
+    
+        seen = []  # Using a list to keep track of seen values
+        current_node = self.head
+        length = self.length
+
+        for i in range(length):
+            if current_node is None:
+                print("Error: Reached end of list unexpectedly.")
+                break
+
+            print(f"Processing node with value: {current_node.value}")
+
+            if current_node.value not in seen:
+                seen.append(current_node.value)
+            else:
+                print(f"Duplicate found: {current_node.value}")
+                # Remove the duplicate node at index i
+                self.remove(i)
+            current_node = current_node.next
+
+        return self
+
+
+
+
+
+
+
+    # def remove_duplicates(self):
+        
+        
+    #     if self.head is None:
+    #         return self
+    #     seen =[]
+    #     current_node = self.head
+    #     length = self.length
+    #     for i in range (length):
+    #         if current_node.value not in seen:
+    #             seen.append(current_node.value)
+    #         else:
+    #             self.remove(i)
+    #             self.length -=1
+    #         current_node = current_node.next
+    #     return self
+        
+        
 
         
-        # temp_node = self.head
-        # if index <0 or index > self.length:
-        #     return None
-        # for _ in range(index):
-        #     temp_node = temp_node.next
-        # temp_node.value = value
+        
     
 
 new_LL = LinkedList()
@@ -150,11 +229,15 @@ new_LL.append(40)
 new_LL.append(20)
 new_LL.prepend(101)
 new_LL.prepend(121)
-new_LL.prepend(131)
-new_LL.prepend(141)
-new_LL.prepend(151)
-new_LL.prepend(1061)
-new_LL.prepend(171)
+# new_LL.prepend(131)
+# new_LL.prepend(141)
+# new_LL.prepend(151)
+# new_LL.prepend(1061)
+# new_LL.prepend(171)
+new_LL.append(20)
+new_LL.append(20)
+new_LL.append(40)
+new_LL.append(121)
 
 # new_LL.insert(10,444)
 
@@ -164,5 +247,7 @@ new_LL.prepend(171)
 # print (new_LL.pop_first())
 # print (new_LL.pop_first())
 print (new_LL)
-print(new_LL.remove(0).value)
+# print(new_LL.remove(0).value)
 print (new_LL)
+
+print (new_LL.remove_duplicates())
