@@ -19,7 +19,7 @@ class LinkedList:
     def __str__(self):
         temp_node = self.head
         result= ''
-        while temp_node is not None:
+        while temp_node:
             result += str(temp_node.value)
             if temp_node.next is not None:
                 result += '->'
