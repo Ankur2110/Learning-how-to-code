@@ -1,4 +1,4 @@
-def gcd(a,b):
+def gcd(a,b): #a>b
     assert int(a) ==a and int(b)==b, "The numbers must be integers only"
     if a<0:
         a = -1*a
