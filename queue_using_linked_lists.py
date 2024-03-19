@@ -34,7 +34,7 @@ class queue:
             self.ll.head = self.ll.tail = node
         else:
             self.ll.tail.next = node
-            self.ll.tail = Node
+            self.ll.tail = node
 
     def isempty(self):
         if self.ll.head == None:

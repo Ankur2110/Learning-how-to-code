@@ -1,3 +1,5 @@
+import queue_using_linked_lists as queue
+
 class Treenode:
 
     def __init__(self, data):
@@ -34,7 +36,7 @@ def preOrderTraversal(rootnode):
         preOrderTraversal(rootnode.rightChild)
 
 
-preOrderTraversal(newBT)
+# preOrderTraversal(newBT)
 
 def inOrderTraversal(rootnode):
     if not rootnode:
@@ -44,4 +46,31 @@ def inOrderTraversal(rootnode):
         print (rootnode.data)
         inOrderTraversal(rootnode.rightChild)
 
-inOrderTraversal(newBT)
+# inOrderTraversal(newBT)
+
+
+def postOrderTraversal(rootnode):
+    if not rootnode:
+        return
+    else:
+        postOrderTraversal(rootnode.leftChild)
+        postOrderTraversal(rootnode.rightChild)
+        print(rootnode.data)
+
+def levelOrderTraversal(rootnode):
+    if not rootnode:
+        return
+    else:
+        customqueue = queue.queue()
+        customqueue.enqueue(rootnode)
+        while not(customqueue.isempty()):
+            root = customqueue.dequeue()
+            print (root.value.data)
+            if root.value.leftChild:
+                customqueue.enqueue(root.value.leftChild)
+            if root.value.rightChild:
+                customqueue.enqueue(root.value.rightChild)
+
+
+
+levelOrderTraversal(newBT)
