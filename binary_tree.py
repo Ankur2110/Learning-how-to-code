@@ -152,3 +152,11 @@ def deleteNode(rootnode, to_be_deleted_node):
                 customqueue.enqueue(root.value.leftChild)
             if root.value.rightChild:
                 customqueue.enqueue(root.value.rightChild)
+
+
+
+def deleteEntireBT(rootnode):
+    rootnode.data = None
+    rootnode.leftChild = None
+    rootnode.rightChild = None
+    
