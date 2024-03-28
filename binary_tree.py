@@ -159,4 +159,5 @@ def deleteEntireBT(rootnode):
     rootnode.data = None
     rootnode.leftChild = None
     rootnode.rightChild = None
-    
+    return "The Binary Tree has been deleted"
+
