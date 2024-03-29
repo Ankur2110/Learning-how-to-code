@@ -1,3 +1,5 @@
+import queue_using_linked_lists as queue
+
 class BSTNode:
     def __init__(self, data):
         self.data = data
@@ -21,23 +23,65 @@ def insert(rootnode, nodevalue):
     return rootnode
 
 
-# def insert(rootnode, nodevalue):
-#     if rootnode is None:
-#         rootnode = BSTNode(nodevalue)
-#         print(rootnode.data)
+def postorderTraversal(rootnode):
+    if not rootnode:
+        return
+    postorderTraversal(rootnode.leftchild)
+    postorderTraversal(rootnode.rightchild)
+    print(rootnode.data)
 
-#     elif nodevalue< rootnode.data:
-#         insert(rootnode.leftchild, nodevalue)
-#     else:
-#         insert(rootnode.rightchild, nodevalue)
-#     return rootnode
 
-        
+def preOrderTraversal(rootnode):
+    if not rootnode:
+        return
+    else:
+        print (rootnode.data)
+        preOrderTraversal(rootnode.leftChild)
+        preOrderTraversal(rootnode.rightChild)
 
-BST = BSTNode(None)
+
+
+def inOrderTraversal(rootnode):
+    if not rootnode:
+        return
+    else:
+        inOrderTraversal(rootnode.leftChild)
+        print (rootnode.data)
+        inOrderTraversal(rootnode.rightChild)
+
+
+def levelordertraversal(rootnode):
+    if not rootnode:
+        return
+    custom_queue = queue.queue()
+    custom_queue.enqueue(rootnode)
+    while not custom_queue.isempty():
+        root = custom_queue.dequeue()
+        print (root.value.data)
+        if root.value.leftChild:
+            custom_queue.enqueue(root.value.leftchild)
+        if root.value.rightChild:
+            custom_queue.enqueue(root.value.rightchild)
+
+def search(rootnode, search_value):
+    if not rootnode:
+        return False
+    if rootnode.data == search_value:
+        return True
+    elif search_value < rootnode.data:
+        return search(rootnode.leftchild, search_value)
+    else:
+        return search(rootnode.rightchild, search_value)
+    return False
+
+    
+
+
+
+BST = BSTNode(25)
 
 insert(BST, 45)
 insert(BST, 55)
 insert(BST, 60)
 
-print(BST.rightchild.rightchild.data)
+print(search(BST,55))
