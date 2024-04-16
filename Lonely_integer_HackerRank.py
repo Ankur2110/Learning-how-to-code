@@ -3,7 +3,7 @@ def lonelyinteger(a):
     pointer = 0
     for _ in range(len(sorted_input)//2):
         if sorted_input[pointer] != sorted_input[pointer+1]:
-            return sorted_input[first_pointer]
+            return sorted_input[pointer]
         pointer +=2
     return sorted_input[-1]
 

@@ -2,11 +2,7 @@
 
 # Example
 
-#     input_tuple = (
-#         (1, 2, 3),
-#         (4, 5, 6),
-#         (7, 8, 9)
-#     )
+input_tuple = ((1, 2, 3), (4, 5, 6), (7, 8, 9) )
 #     output_tuple = get_diagonal(input_tuple)
 #     print(output_tuple)  # Expected output: (1, 5, 9)
 
@@ -14,6 +10,12 @@
 def get_diagonal(tup):
     return tuple(tup[i][j] for i,j in zip(range(len(tup)),range(len(tup))) if i==j)
     
+
+def get_diagonal1(tup):
+    return tuple(tup[i][i] for i in range(len(tup)))
+
+print(get_diagonal(input_tuple))
+
     
     
 #     diag = []
